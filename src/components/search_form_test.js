@@ -11,10 +11,12 @@ import DatatablePage from './table_action';
 import ReactDOM from 'react-dom';
 import DatePickerPage from "./date_picker";
 import ModalExample from './modal_test';
+import UploadInput from './upoad_file_input';
 
 class SearchFormTest extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             data: {
                 'province': '',
@@ -72,7 +74,6 @@ class SearchFormTest extends Component {
             }
 
         }
-
     }
     handleDistrictChange = selectedDistrictOption => {
         this.setState(prevState => ({
@@ -126,6 +127,14 @@ class SearchFormTest extends Component {
             </div>
         );
     }
+    renderFileField(field) {
+        return (
+            <div className="col-sm">
+                <label>{field.label}</label>
+                <UploadInput />
+            </div>
+        );
+    }
     renderComboboxDistrictField(field) {
 
         return (
@@ -173,14 +182,15 @@ class SearchFormTest extends Component {
                 }))
             }
         });
-        console.log(this.state)
     }
     downloadFile = () => {
-        console.log("click get File")
         getFile("1.PNG", (request) => {
-            console.log(request);
         })
     }
+
+
+
+
     render() {
         const { handleSubmit } = this.props;
         return (
@@ -202,7 +212,16 @@ class SearchFormTest extends Component {
                             handleChange={this.handleDistrictChange}
                             component={this.renderComboboxDistrictField}
                         />
+
+                    </div>
+                    <div className="row">
                         <DatePickerPage />
+                        <Field
+
+                            label="Input File"
+                            name="Input File"
+                            component={this.renderFileField}
+                        />
                     </div>
                     <div className="div-button">
                         <button type="submit" className="btn btn-primary">Submit</button>

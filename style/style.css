@@ -10,3 +10,9 @@ form a {
     text-align: center;
     margin: 10px;
 }
+
+div.input-file {
+    font-family: 'sans-serif';
+    text-align: 'center';
+    display: 'flex';
+}
